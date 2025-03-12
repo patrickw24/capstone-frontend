@@ -67,6 +67,7 @@ export const RegisterForm = () => {
                     className="form-control"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
+                    name="email"
                     onChange={onChangeHandler}
                   />
                 </div>
@@ -80,6 +81,7 @@ export const RegisterForm = () => {
                   <input
                     type="text"
                     className="form-control"
+                    name="name"
                     onChange={onChangeHandler}
                     placeholder="Enter Name"
                   
@@ -93,8 +95,9 @@ export const RegisterForm = () => {
                     Password
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     className="form-control"
+                    name="password"
                     onChange={onChangeHandler}
                     placeholder="Password"
                     
@@ -110,7 +113,7 @@ export const RegisterForm = () => {
                 </button>
               </fieldset>
             </form>
-          <p>{notification}</p>
+          <p className='mt-2'>{notification}</p>
         </div>
       </div>
     </div>
