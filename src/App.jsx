@@ -1,9 +1,10 @@
 import { Home } from './ScreenComponents/Home'
-import { Navbar } from './Components/Navbar'
+import { Navbar } from './Components/Menu'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Register } from './ScreenComponents/Register'
 import { Posts } from './ScreenComponents/Posts'
 import { useState, useEffect } from 'react'
+import { NotFound } from './Components/NotFound'
 
 
 
@@ -47,7 +48,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/register" element={<Register/>}/>
+      <Route path="*" element={<NotFound/>}/>
      { !isLogin ? <Route path="/posts" element={<Posts/>}/> : ""}
+
     </Routes>
     </BrowserRouter>
    </>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Navbar = () => {
+export const Menu = () => {
 
      const logOut = () => {
-        
+        /*create logout button*/
     }
 
   return (
