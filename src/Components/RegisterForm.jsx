@@ -22,7 +22,7 @@ export const RegisterForm = () => {
             console.log(newURL)
             
             const result = await fetch(newURL,{
-                method: 'POST',
+                method: "POST",
                 headers:{
                     "Content-Type" : "application/json"
                 },
