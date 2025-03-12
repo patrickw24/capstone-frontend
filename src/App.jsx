@@ -1,6 +1,7 @@
-
+import { Home } from './ScreenComponents/Home'
 import { Navbar } from './Components/Navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Register } from './ScreenComponents/Register'
 
 
 
@@ -13,7 +14,8 @@ function App() {
     <BrowserRouter> 
     <Navbar/>
     <Routes>
-      <Route />
+      <Route path="/" element={<Home/>}/>
+      <Route path="/register" element={<Register/>}/>
     </Routes>
     </BrowserRouter>
    </>
