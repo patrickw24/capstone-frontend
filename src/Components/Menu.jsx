@@ -6,6 +6,8 @@ export const Menu = () => {
         /*create logout button*/
     }
 
+    /* create a section to create a comment and post? Or possibly modal button for each post*/
+
   return (
     <>
     <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">

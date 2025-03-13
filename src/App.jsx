@@ -5,6 +5,7 @@ import { Register } from './ScreenComponents/Register'
 import { Posts } from './ScreenComponents/Posts'
 import { useState, useEffect } from 'react'
 import { NotFound } from './Components/NotFound'
+import { Wall } from './Components/Wall'
 import './index.css' 
 
 
