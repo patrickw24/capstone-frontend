@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 export const Wall = () => {
   const [tweets, setTweets] = useState([]);
   const token = window.localStorage.getItem("social-credential");
-    console.log(token)
+  console.log(token);
+  
   const getTweets = async () => {
     const url = import.meta.env.VITE_BASE_URL;
     const newURL = `${url}/posts`;
@@ -12,8 +13,8 @@ export const Wall = () => {
     const response = await fetch(newURL, {
       method: "GET",
       headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token
+        "Content-Type": "application/json",
+        Authorization: token,
       },
     });
 
@@ -26,13 +27,12 @@ export const Wall = () => {
   };
 
   useEffect(() => {
-    
     getTweets();
   }, []);
 
   return (
     <>
-    <h2>Posts</h2>
+      <h2>Posts</h2>
       <div className="container">
         {tweets.map((tweet) => (
           <div

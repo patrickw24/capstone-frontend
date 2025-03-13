@@ -38,7 +38,8 @@ export const LoginForm = () => {
         }
         if(result.ok){
             setNotification("Login Successful... Please Wait")
-            const token= result.token
+            const response= await result.json() 
+            const token= response.token
 
             window.localStorage.setItem("social-credential", token)
 
