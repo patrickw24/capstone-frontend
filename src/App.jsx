@@ -1,10 +1,11 @@
 import { Home } from './ScreenComponents/Home'
-import { Navbar } from './Components/Menu'
+import { Menu } from './Components/Menu'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Register } from './ScreenComponents/Register'
 import { Posts } from './ScreenComponents/Posts'
 import { useState, useEffect } from 'react'
 import { NotFound } from './Components/NotFound'
+import './index.css' 
 
 
 
@@ -44,7 +45,7 @@ function App() {
   return (
    <>
     <BrowserRouter> 
-    <Navbar/>
+    
     <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/register" element={<Register/>}/>
