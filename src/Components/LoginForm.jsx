@@ -24,6 +24,11 @@ export const LoginForm = () => {
         const url = import.meta.env.VITE_BASE_URL
         const newURL= `${url}/auth/login`
 
+        if(!formData.email || !formData.password){
+            setNotification("All fields are required")
+            return;
+        }
+
         const result = await fetch(newURL, {
             method: "POST",
             headers: {
@@ -32,10 +37,7 @@ export const LoginForm = () => {
             body: JSON.stringify(formData) 
         })
 
-        if(!formData.email || !formData.password){
-            setNotification("All fields are required")
-            return;
-        }
+      
         if(result.ok){
             setNotification("Login Successful... Please Wait")
             const response= await result.json() 

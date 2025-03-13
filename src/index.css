@@ -8,3 +8,11 @@ body{
     align-items: center;
     height: 100vh;
 }
+
+.centerdiv{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center ;
+    align-items: center;
+
+}

@@ -39,19 +39,21 @@ function App() {
 
   useEffect(()=>{
     token = window.localStorage.getItem("social-credential")
+    console.log(token)
     validateToken()
   },[])
+  
   
 
   return (
    <>
     <BrowserRouter> 
-    
+    { isLogin ? <Menu/>: ""}
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/register" element={<Register/>}/>
+     {!isLogin ? <Route path="/register" element={<Register/>}/> : ""}
       <Route path="*" element={<NotFound/>}/>
-     { !isLogin ? <Route path="/posts" element={<Posts/>}/> : ""}
+     { isLogin ? <Route path="/posts" element={<Posts/>}/> : ""}
 
     </Routes>
     </BrowserRouter>
