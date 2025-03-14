@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export const Wall = () => {
   const [tweets, setTweets] = useState([]);
   const token = window.localStorage.getItem("social-credential");
-  console.log(token);
+ const {posts_id} = useParams()
   
   const getTweets = async () => {
     const url = import.meta.env.VITE_BASE_URL;
@@ -26,19 +27,39 @@ export const Wall = () => {
     }
   };
 
+    const deleteTweet= async()=>{
+        const url = import.meta.env.VITE_BASE_URL;
+        const newURL = `${url}/posts`;
+
+        const response = await fetch(newURL,{
+            method: 'DELETE',
+            headers: {
+                Authorization: token,
+            }
+        })
+        if(response.ok){
+            
+        }
+
+    }
+
   useEffect(() => {
     getTweets();
   }, []);
 
-  
+
+    const commentButton= (id)=>{
+        window.location.href= `/comments/${id}`
+    }
+
 
   return (
     <>
-      <h2>Posts</h2>
+      
       <div className="container centerdiv" style={{ height: "100vh" }}>
         {tweets.map((tweet) => (
           <div
-            key={tweet.email}
+            key={tweet.posts_id}
             className="card border-info mb-3"
             style={{ maxWidth: "50rem" }}
           >
@@ -46,7 +67,7 @@ export const Wall = () => {
             <div className="card-body">
               <h4 className="card-title">{tweet.content}</h4>
               <p className="card-text">{tweet.email}</p>
-              <button> btn  </button>
+              <button type="button" onClick={() => commentButton(tweet.posts_id)} className="btn btn-info">Comments</button>
             </div>
           </div>
         ))}

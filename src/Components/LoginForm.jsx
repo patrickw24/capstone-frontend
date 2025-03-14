@@ -44,7 +44,7 @@ export const LoginForm = () => {
             const token= response.token
 
             window.localStorage.setItem("social-credential", token)
-
+            window.localStorage.setItem("social-email", formData.email)
             setTimeout(()=>{
                 window.location.href= "/posts"
             }, 2000)

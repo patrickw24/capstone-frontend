@@ -6,6 +6,7 @@ import { Posts } from './ScreenComponents/Posts'
 import { useState, useEffect } from 'react'
 import { NotFound } from './Components/NotFound'
 import { Wall } from './Components/Wall'
+import { Comments } from './ScreenComponents/Comments'
 import './index.css' 
 
 
@@ -39,7 +40,7 @@ function App() {
 
   useEffect(()=>{
     token = window.localStorage.getItem("social-credential")
-    console.log(token)
+    
     validateToken()
   },[])
   
@@ -54,6 +55,7 @@ function App() {
      {!isLogin ? <Route path="/register" element={<Register/>}/> : ""}
       <Route path="*" element={<NotFound/>}/>
      { isLogin ? <Route path="/posts" element={<Posts/>}/> : ""}
+     { isLogin ? <Route path="/comments/:posts_id" element={<Comments/>}/> : ""}
 
     </Routes>
     </BrowserRouter>
