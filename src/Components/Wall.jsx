@@ -38,7 +38,7 @@ export const Wall = () => {
             }
         })
         if(response.ok){
-            
+            /*finish*/
         }
 
     }

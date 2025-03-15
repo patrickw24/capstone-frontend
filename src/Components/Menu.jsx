@@ -2,9 +2,12 @@ import React from 'react'
 
 export const Menu = () => {
 
-     const logOut = () => {
-        /*create logout button*/
-    }
+  const logOut = () => {
+
+    window.localStorage.removeItem("social-credential")
+    window.location.href="/"
+
+}
 
     /* create a section to create a comment and post? Or possibly modal button for each post*/
 
@@ -39,6 +42,7 @@ export const Menu = () => {
           </div>
         </li>
       </ul>
+      <button onClick={logOut} className="btn btn-secondary my-2 my-sm-0" type="button">Log Out</button>
     </div>
   </div>
 </nav>
