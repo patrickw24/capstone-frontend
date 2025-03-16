@@ -8,6 +8,7 @@ export const AddComment = () => {
     const [notification, setNotification] = useState("")
     const [comments, setComments] = useState([]);
     const {posts_id} = useParams()
+    const {comments_id} = useParams()
     const onChangeHandler = (event)=>{
         const property= event.target.name
         const value = event.target.value
@@ -49,18 +50,25 @@ export const AddComment = () => {
       }, [posts_id]);
 
     
-
+      console.log(formData)
 
     const postCommentsID= async (event)=>{
         event.preventDefault()
-        const {posts_id} = useParams()
+        
         const url= import.meta.env.VITE_BASE_URL 
-        const newURL= `${url}/comments/${posts_id}`
+        const newURL= `${url}/comments`
         const token = window.localStorage.getItem("social-credential")
-
+        const userEmail= window.localStorage.getItem("social-email")
+        console.log(newURL)
         if(!formData.content){
             setNotification("Please Enter a Comment")
             return;
+        }
+
+        const tmp={
+            content: formData.content ,
+            email: userEmail,
+            posts_id: posts_id
         }
 
         const response = await fetch(newURL,{
@@ -69,7 +77,7 @@ export const AddComment = () => {
                 'Authorization': token,
                 'Content-Type' : 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(tmp)
         })
 
         if(response.ok){
@@ -82,10 +90,12 @@ export const AddComment = () => {
     }
 
 
-    const deleteCommentID= async(id)=>{
+    const deleteCommentID= async(comments_id)=>{
         const url= import.meta.env.VITE_BASE_URL 
-        const newURL= `${url}/comments/${id}`
+        /*can't get ID*/
+        const newURL= `${url}/comments/${comments_id}`
         const token = window.localStorage.getItem("social-credential")
+        
 
         const response = await fetch(newURL,{
             method:'DELETE',
@@ -94,9 +104,16 @@ export const AddComment = () => {
                 'Content-Type' : 'application/json'
             },
         })
+
+        if(response.ok){
+            getCommentsID()
+        }else{
+            console.log("Failed to Delete Comment")
+        }
         
     }
-
+    console.log(comments.id)
+    console.log(comments)
 
 
   return (
@@ -106,8 +123,8 @@ export const AddComment = () => {
         <div className="form-group">
             <textarea
                 name="content"
-                value={formData.content}
-                onChange={commentContent}
+                
+                onChange={onChangeHandler}
                 className="form-control"
                 placeholder="Write your comment here..."
                 
@@ -115,27 +132,28 @@ export const AddComment = () => {
         </div>
         <button type="submit" className="btn btn-info mt-3">Post Comment</button>
     </form>
-     <p className="mt-3 text-success">{notification}</p>
+     <p className="mt-3 text-info">{notification}</p>
 
 
      <div className="container centerdiv" style={{ height: "100vh" }}>
-     {comments.map((comment) => (
+     {comments.map((item) => (
                     <div
-                        key={comment.posts_id}
+                        key={item.comments_id}
                         className="card border-info mb-3"
                         style={{ maxWidth: "50rem" }}
                     >
-                        <div className="card-header">{comment.created_at}</div>
+                        <div className="card-header">{item.created_at}</div>
                         <div className="card-body">
-                            <h4 className="card-title">{comment.content}</h4>
-                            <p className="card-text">{comment.email}</p>
+                            <h4 className="card-title">{item.content}</h4>
+                            <p className="card-text">{item.email}</p>
                             <button
                                 type="button"
                                 className="btn btn-danger"
-                                onClick={() => deleteCommentID(comment.posts_id)}
+                                onClick={() => deleteCommentID(item.comments_id)}
                             >
                                 Delete Comment
                             </button>
+                            
             </div>
           </div>
         ))}
