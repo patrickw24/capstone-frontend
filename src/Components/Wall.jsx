@@ -7,6 +7,8 @@ export const Wall = () => {
   const [notification, setNotification] = useState("");
   const token = window.localStorage.getItem("social-credential");
  const {posts_id} = useParams()
+ const globalUser = window.localStorage.getItem("social-email");
+
   
   const getTweets = async () => {
     const url = import.meta.env.VITE_BASE_URL;
@@ -41,9 +43,6 @@ export const Wall = () => {
 
         const token = window.localStorage.getItem("social-credential")
 
-        if(token !== postEmail){
-            setNotification("You can only delete your own posts.")
-        }
 
         const url = import.meta.env.VITE_BASE_URL;
         const newURL = `${url}/posts/${id}`
@@ -76,11 +75,17 @@ export const Wall = () => {
               <h4 className="card-title">{tweet.content}</h4>
               <p className="card-text">{tweet.email}</p>
               <button type="button" onClick={() => commentButton(tweet.posts_id)} className="btn btn-info">Comments</button>
-              <button type="button" onClick={() => deletePost(tweet.posts_id,tweet.email )} className="btn btn-danger ms-5">Delete Post</button>
+
+
+            {
+            globalUser === tweet.email ?
+
+              <button type="button" onClick={() => deletePost(tweet.posts_id,tweet.email )} className="btn btn-danger ms-5">Delete Post</button> : <></>
+            }
+
             </div>
           </div>
         ))}
-        <p> {notification}</p>
       </div>
     </>
   );

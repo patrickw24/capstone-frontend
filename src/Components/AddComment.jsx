@@ -9,6 +9,9 @@ export const AddComment = () => {
     const [comments, setComments] = useState([]);
     const {posts_id} = useParams()
     const {comments_id} = useParams()
+    const globalUser = window.localStorage.getItem("social-email")
+
+
     const onChangeHandler = (event)=>{
         const property= event.target.name
         const value = event.target.value
@@ -116,46 +119,56 @@ export const AddComment = () => {
 
 
   return (
-    <div className="container" style={{ maxWidth: "600px", marginTop: "50px" }}>
-    <h2>Add a Comment</h2>
-    <form onSubmit={postCommentsID}>
-        <div className="form-group">
+    <div className="container addTweetCSS" >
+    
+    <div className="card text-white bg-primary mb-4 p-3">
+      <div className="card-body">
+      <h4 className="card-title text-center">Add a Comment</h4>
+        <form onSubmit={postCommentsID}>
+          <div className="form-group">
             <textarea
-                name="content"
-                
-                onChange={onChangeHandler}
-                className="form-control"
-                placeholder="Write your comment here..."
-                
+              name="content"
+              onChange={onChangeHandler}
+              className="form-control"
+              placeholder="Write your comment here..."
+              value={formData.content}
             />
-        </div>
-        <button type="submit" className="btn btn-info mt-3">Post Comment</button>
-    </form>
-     <p className="mt-3 text-info">{notification}</p>
+          </div>
+          <button type="submit" className="btn btn-info mt-3">
+            Post Comment
+          </button>
+        </form>
+        <p className="mt-3 text-info">{notification}</p>
+      </div>
+    </div>
 
+   
 
      <div className="container centerdiv" style={{ height: "100vh" }}>
-     {comments.map((item) => (
-                    <div
-                        key={item.comments_id}
-                        className="card border-info mb-3"
-                        style={{ maxWidth: "50rem" }}
-                    >
-                        <div className="card-header">{item.created_at}</div>
-                        <div className="card-body">
-                            <h4 className="card-title">{item.content}</h4>
-                            <p className="card-text">{item.email}</p>
-                            <button
-                                type="button"
-                                className="btn btn-danger"
-                                onClick={() => deleteCommentID(item.comments_id)}
-                            >
-                                Delete Comment
-                            </button>
-                            
-            </div>
+     {comments.length === 0 ? (
+          <div>
+            <h2 className="text-primary mt-5">No comments yet. Be the first to comment!</h2>
           </div>
-        ))}
+        ) : (
+          comments.map((item) => (
+            <div key={item.comments_id} className="card border-info mb-3" style={{ maxWidth: '50rem' }}>
+              <div className="card-header">{item.created_at}</div>
+              <div className="card-body">
+                <h4 className="card-title">{item.content}</h4>
+                <p className="card-text">{item.email}</p>
+                {globalUser === item.email && (
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => deleteCommentID(item.comments_id)}
+                  >
+                    Delete Comment
+                  </button>
+                )}
+              </div>
+            </div>
+          ))
+        )}
       </div>
 </div>
   )
