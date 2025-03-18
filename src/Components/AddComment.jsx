@@ -100,8 +100,7 @@ export const AddComment = () => {
         const response = await fetch(newURL,{
             method:'DELETE',
             headers:{
-                'Authorization': token,
-                'Content-Type' : 'application/json'
+                Authorization: token,
             },
         })
 

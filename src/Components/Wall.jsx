@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 export const Wall = () => {
   const [tweets, setTweets] = useState([]);
+  const [notification, setNotification] = useState("");
   const token = window.localStorage.getItem("social-credential");
  const {posts_id} = useParams()
   
@@ -27,22 +28,6 @@ export const Wall = () => {
     }
   };
 
-    const deleteTweet= async()=>{
-        const url = import.meta.env.VITE_BASE_URL;
-        const newURL = `${url}/posts`;
-
-        const response = await fetch(newURL,{
-            method: 'DELETE',
-            headers: {
-                Authorization: token,
-            }
-        })
-        if(response.ok){
-            /*finish*/
-        }
-
-    }
-
   useEffect(() => {
     getTweets();
   }, []);
@@ -50,6 +35,29 @@ export const Wall = () => {
 
     const commentButton= (id)=>{
         window.location.href= `/comments/${id}`
+    }
+
+    const deletePost= async (id, postEmail)=>{
+
+        const token = window.localStorage.getItem("social-credential")
+
+        if(token !== postEmail){
+            setNotification("You can only delete your own posts.")
+        }
+
+        const url = import.meta.env.VITE_BASE_URL;
+        const newURL = `${url}/posts/${id}`
+        
+
+        const response= await fetch(newURL,{
+            method: 'DELETE',
+            headers: {
+                Authorization: token,
+            }
+        })
+        if(response.ok){
+            getTweets()
+        }
     }
 
 
@@ -68,9 +76,11 @@ export const Wall = () => {
               <h4 className="card-title">{tweet.content}</h4>
               <p className="card-text">{tweet.email}</p>
               <button type="button" onClick={() => commentButton(tweet.posts_id)} className="btn btn-info">Comments</button>
+              <button type="button" onClick={() => deletePost(tweet.posts_id,tweet.email )} className="btn btn-danger ms-5">Delete Post</button>
             </div>
           </div>
         ))}
+        <p> {notification}</p>
       </div>
     </>
   );

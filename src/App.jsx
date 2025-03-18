@@ -53,7 +53,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home/>}/>
      {!isLogin ? <Route path="/register" element={<Register/>}/> : ""}
-      <Route path="*" element={<NotFound/>}/>
+     { isLogin ? <Route path="*" element={<NotFound/>}/> : ""}
      { isLogin ? <Route path="/posts" element={<Posts/>}/> : ""}
      { isLogin ? <Route path="/comments/:posts_id" element={<Comments/>}/> : ""}
 
