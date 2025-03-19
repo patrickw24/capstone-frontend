@@ -51,7 +51,7 @@ function App() {
     <HashRouter> 
     { isLogin ? <Menu/>: ""}
     <Routes>
-      <Route path="/" element={<Home/>}/>
+      <Route path="/" element={<Home setLogin={setLogin}/>}/>
      {!isLogin ? <Route path="/register" element={<Register/>}/> : ""}
      { isLogin ? <Route path="*" element={<NotFound/>}/> : ""}
      { isLogin ? <Route path="/posts" element={<Posts/>}/> : ""}

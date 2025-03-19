@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export const LoginForm = () => {
+export const LoginForm = ({setLogin}) => {
 
 
     const [formData, setFormData] = useState({email:'', password:''})
@@ -45,6 +45,7 @@ export const LoginForm = () => {
 
             window.localStorage.setItem("social-credential", token)
             window.localStorage.setItem("social-email", formData.email)
+            setLogin(true)
             setTimeout(()=>{
                 window.location.href= "#/posts"
             }, 2000)

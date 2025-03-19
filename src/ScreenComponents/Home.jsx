@@ -1,8 +1,8 @@
 import React from 'react'
 import { LoginForm } from '../Components/LoginForm'
 
-export const Home = () => {
+export const Home = ({setLogin}) => {
   return (
-    <div><LoginForm/></div>
+    <div><LoginForm setLogin={setLogin}/></div>
   )
 }
