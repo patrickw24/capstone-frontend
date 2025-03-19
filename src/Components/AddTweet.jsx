@@ -38,7 +38,7 @@ export const AddTweet = () => {
       setNotification("Tweet Posted... Please wait!");
 
       setTimeout(() => {
-        window.location.href = "/posts";
+        window.location.href = "#/posts";
       }, 1000);
     }
   };

@@ -1,6 +1,6 @@
 import { Home } from './ScreenComponents/Home'
 import { Menu } from './Components/Menu'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import { Register } from './ScreenComponents/Register'
 import { Posts } from './ScreenComponents/Posts'
 import { useState, useEffect } from 'react'
@@ -48,7 +48,7 @@ function App() {
 
   return (
    <>
-    <BrowserRouter> 
+    <HashRouter> 
     { isLogin ? <Menu/>: ""}
     <Routes>
       <Route path="/" element={<Home/>}/>
@@ -58,7 +58,7 @@ function App() {
      { isLogin ? <Route path="/comments/:posts_id" element={<Comments/>}/> : ""}
 
     </Routes>
-    </BrowserRouter>
+    </HashRouter>
    </>
   )
 }

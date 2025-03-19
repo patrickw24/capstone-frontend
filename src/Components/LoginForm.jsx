@@ -7,7 +7,7 @@ export const LoginForm = () => {
     const [formData, setFormData] = useState({email:'', password:''})
     const [notification, setNotification] = useState("")
     const registerButton= ()=>{
-        window.location.href= "/register"
+        window.location.href= "#/register"
     }
 
     const onChangeHandler = (event)=>{
@@ -46,7 +46,7 @@ export const LoginForm = () => {
             window.localStorage.setItem("social-credential", token)
             window.localStorage.setItem("social-email", formData.email)
             setTimeout(()=>{
-                window.location.href= "/posts"
+                window.location.href= "#/posts"
             }, 2000)
         }
     }

@@ -39,7 +39,7 @@ export const Wall = () => {
   }, []);
 
   const commentButton = (id) => {
-    window.location.href = `/comments/${id}`;
+    window.location.href = `#/comments/${id}`;
   };
 
   const deletePost = async (id, postEmail) => {
@@ -64,10 +64,10 @@ export const Wall = () => {
       <div className={`container ${divCenterClass}`}>
         {tweets.map((tweet) => (
           <div key={tweet.posts_id} className="card border-info mb-3">
-            <div className="card-header">{tweet.created_at}</div>
+            <div className="card-header">{tweet.email} | {tweet.created_at}</div>
             <div className="card-body">
-              <h4 className="card-title">{tweet.content}</h4>
-              <p className="card-text">{tweet.email}</p>
+              <p className="card-title"><strong>{tweet.content}</strong></p>
+              <p className="card-text"></p>
 
               <div className="row">
 
@@ -88,7 +88,7 @@ export const Wall = () => {
                       <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
                     </svg>
                   </button>
-
+                  </div>
                   {globalUser === tweet.email ? (
                     <div className="col">
                       <button
@@ -111,7 +111,7 @@ export const Wall = () => {
                   ) : (
                     <></>
                   )}
-                </div>
+                
               </div>
             </div>
           </div>
