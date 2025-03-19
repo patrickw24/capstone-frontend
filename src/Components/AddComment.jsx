@@ -17,6 +17,7 @@ export const AddComment = () => {
         const value = event.target.value
         const tmpObject= formData
         tmpObject[property]= value
+        console.log(value)
         setFormData(tmpObject)
     }
 
