@@ -17,7 +17,7 @@ export const AddComment = () => {
         const value = event.target.value
         const tmpObject= formData
         tmpObject[property]= value
-        console.log(value)
+        
         setFormData(tmpObject)
     }
 
@@ -54,7 +54,7 @@ export const AddComment = () => {
       }, [posts_id]);
 
     
-      console.log(formData)
+      
 
     const postCommentsID= async (event)=>{
         event.preventDefault()
@@ -63,7 +63,7 @@ export const AddComment = () => {
         const newURL= `${url}/comments`
         const token = window.localStorage.getItem("social-credential")
         const userEmail= window.localStorage.getItem("social-email")
-        console.log(newURL)
+        
         if(!formData.content){
             setNotification("Please Enter a Comment")
             return;
@@ -88,7 +88,7 @@ export const AddComment = () => {
             setNotification("Comment Posted...Please Wait!")
 
             setTimeout(() => {
-                window.location.href = `#/comments/${posts_id}`
+                window.location.reload()
             }, 1000);
         }
     }
@@ -115,8 +115,7 @@ export const AddComment = () => {
         }
         
     }
-    console.log(comments.id)
-    console.log(comments)
+    
 
 
   return (
