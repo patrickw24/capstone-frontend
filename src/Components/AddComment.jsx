@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react'
 
 export const AddComment = () => {
 
+     const [size, setSize] = useState(window.screen.availWidth);
+      const [divCenterClass, setDivCenterClass] = useState("centerdiv");
     const [formData, setFormData] = useState({content:''})
     const [notification, setNotification] = useState("")
     const [comments, setComments] = useState([]);
@@ -51,6 +53,9 @@ export const AddComment = () => {
         if (posts_id) {
           getCommentsID();
         }
+        if (size < 600) {
+            setDivCenterClass("centerdivMobile");
+          }
       }, [posts_id]);
 
     
@@ -144,7 +149,7 @@ export const AddComment = () => {
 
    
 
-     <div className="container centerdiv" style={{ height: "100vh" }}>
+     <div className={`container ${divCenterClass}`} >
      {comments.length === 0 ? (
           <div>
             <h2 className="text-primary mt-5">No comments yet. Be the first to comment!</h2>
