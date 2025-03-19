@@ -131,7 +131,7 @@ export const AddComment = () => {
               onChange={onChangeHandler}
               className="form-control"
               placeholder="Write your comment here..."
-              value={formData.content}
+             
             />
           </div>
           <button type="submit" className="btn btn-info mt-3">
